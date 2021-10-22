@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const userSchema = mongoose.Schema({
     name: {
@@ -15,7 +15,7 @@ const userSchema = mongoose.Schema({
         required: true
     },
     isAdmin: {
-        type: String,
+        type: Boolean,
         required: true,
         default: false
     },

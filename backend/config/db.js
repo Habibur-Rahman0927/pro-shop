@@ -1,18 +1,17 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const connectDB = async () => {
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI, {
-            useNewUrlParser: true,
             useUnifiedTopology: true,
-            // useFindAndModify: false,
-            // useCreateIndex: true,
-        });
-        console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline)
+            useNewUrlParser: true,
+            // useCreateIndex: true
+        })
+        console.log(`Mongodb Connceted: ${conn.connection.host}`.cyan.underline.bold)
     } catch (error) {
-        console.log(`Error: ${error.message}`.red.underline.bold)
+        console.error(`Error: ${error.message}`.red)
         process.exit(1);
     }
 }
 
-export default connectDB
+export default connectDB;
