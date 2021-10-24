@@ -10,6 +10,8 @@ import { Container } from 'react-bootstrap'
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreens from "./screens/CartScreens";
+import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
 
 
 function App() {
@@ -19,9 +21,11 @@ function App() {
         <Header />
         <main className="py-3">
           <Container>
-            <Route path='/' component={HomeScreen} exact />
+            <Route path='/login' component={LoginScreen} />
+            <Route path='/register' component={RegisterScreen} />
             <Route path='/product/:id' component={ProductScreen} />
             <Route path='/cart/:id?' component={CartScreens} />
+            <Route path='/' component={HomeScreen} exact />
           </Container>
         </main>
         <Footer />
