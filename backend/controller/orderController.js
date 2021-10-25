@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import Order from '../models/orderModel.js';
-
+//post /api/orders
 const addOrderItems = asyncHandler(async (req, res) => {
     const { orderItems,
         shippingAddress,
@@ -29,6 +29,41 @@ const addOrderItems = asyncHandler(async (req, res) => {
     }
 });
 
+
+// get /api/orders/:id
+const getOrderById = asyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id).populate('user', 'name email');
+    if (order) {
+        res.json(order)
+    } else {
+        res.status(404);
+        throw new Error('Order NotFound');
+    }
+});
+
+// get /api/orders/:id/pay
+const updateOrderToPaid = asyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+        order.isPaid = true;
+        order.paidAt = Date.now();
+        order.paymentResult = {
+            id: req.body.id,
+            status: req.body.status,
+            update_time: req.body.update_time,
+            email_address: req.body.payer.email_address
+        }
+        const updateOrder = await order.save()
+        res.json(updateOrder)
+    } else {
+        res.status(404);
+        throw new Error('Order NotFound');
+    }
+});
+
+
 export {
     addOrderItems,
+    getOrderById,
+    updateOrderToPaid
 }
