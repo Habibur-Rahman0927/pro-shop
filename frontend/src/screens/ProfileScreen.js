@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Col, Form, Row, Table, } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { listMyOrders } from '../actions/orderAction';
 import { getUserDetails, updateUserProfile } from '../actions/userAction';
 import Loader from '../components/Loader';
@@ -27,7 +27,7 @@ const ProfileScreen = ({ location, history }) => {
     const orderMyList = useSelector(state => state.orderMyList);
     const { loading: loadingOrders, error: errorOrders, orders } = orderMyList;
 
-    const redirect = location.search ? location.search.split('=')[1] : '/'
+    // const redirect = location.search ? location.search.split('=')[1] : '/'
     useEffect(() => {
         if (!userInfo) {
             history.push('/login')
